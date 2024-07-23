@@ -1,5 +1,6 @@
 <?php
-class Continents{
+class Nationalite{
+
     private $num;
     private $libelle;
 
@@ -67,7 +68,6 @@ class Continents{
       $nb=$req->execute();
       return $nb;
     }
+
 }
-
-
 ?>
