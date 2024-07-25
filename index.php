@@ -7,7 +7,7 @@ require('vues/header.php');?>
 switch($uc){
 case'Acceuil':include('vues/acceuil.php') ;
 break;
-case'Continents': ;
+case'Continents':  ;
 break;
 
 }

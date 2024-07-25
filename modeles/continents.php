@@ -1,28 +1,31 @@
 <?php
 class Continents{
-    private $num;
-    private $libelle;
+    private $id;
+    private $continent;
 
-    public function getNum(){
-        return $this->num;
+    public function getId(){
+        return $this->id;
     }
 
-    public function getLibelle(){
-     return $this->libelle;
+    public function getContinent(){
+     return $this->continent;
     }
 
-    public function setNum($num){
-       $this->num=$num ;
+    public function setId($id){
+       $this->id=$id ;
     }
-    public function setLibelle( string $libelle) : self{
-      $this->libelle=$libelle;
+    public function setContinent( string $continent) : self{
+      $this->continent=$continent;
     }
 //return l'emsenble des continents 
 //@return continent[] tableau d'objet continent
 
     public static function findAll():array{
-     $req=MonPdo::getInstance()->Prepare('SELECT * FROM continents');
-     $req->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'Contients');
+      $req=MonPdo::getInstance()->Prepare('SELECT * FROM continents ');
+      $req->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'Contients');
+     
+    //  $req=MonPdo::getInstance()->Prepare('SELECT * FROM nationnalite INNER JOIN continents WHERE nationnalite.continent_id = continents.id');
+    //  $req->setFetchMode(PDO::FETCH_OBJ);
      $req->execute();
      $lesReultats=$req->fetchAll();
      return $lesReultats;
@@ -33,7 +36,7 @@ class Continents{
     // @param contients objet contient trouvé
     
     public static function findById(int $id):Contients{
-      $req=MonPdo::getInstance()->Prepare('SELECT * FROM continents WHERE num=:id');
+      $req=MonPdo::getInstance()->Prepare('SELECT * FROM continents WHERE id=:id');
       $req->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'Contients');
       $req->bindParam('id',$id);
       $req->execute();
@@ -44,26 +47,26 @@ class Continents{
     // permet d'ajouter un conitnent
     //@param Continent $continent à ajouter;
     //@return integer  resultat (1 si l'opération à réussi, 0 sinon)
-    public static function add(Continent $continent):int{
-      $req=MonPdo::getInstance()->Prepare('INSERT INTO continents (libelle)Values(:libelle)');
-      $req->bindParam('id',$continent->getLibelle());
+    public static function add(Continents $continen):int{
+      $req=MonPdo::getInstance()->Prepare('INSERT INTO continents (continent)Values(:continent)');
+      $req->bindParam('continent',$continen->getContinent());
       $nb=$req->execute();
       return $nb;
     
     }
 
     //permet de modifier un continent
-    public static function update(Continent $continent):int{
-      $req=MonPdo::getInstance()->Prepare('UPDATE continents SET libelle =:libelle WHERE num=:id ');
-      $req->bindParam('id',$continent->getLibelle());
-      $req->bindParam('libelle',$continent->getLibelle());
+    public static function update(Continents $continen):int{
+      $req=MonPdo::getInstance()->Prepare('UPDATE continents SET continent =:continent WHERE id=:id ');
+      $req->bindParam('id',$continen->getId());
+      $req->bindParam('continent',$continen->getContinent());
       $nb=$req->execute();
       return $nb;
     }
 //permet de suprimer un continent
-    public static function delete(Continent $continent){
-      $req=MonPdo::getInstance()->Prepare('DELETE FROM continents WHERE num=:id ');
-      $req->bindParam('id',$continent->getLibelle());
+    public static function delete(Continents $continen):int{
+      $req=MonPdo::getInstance()->Prepare('DELETE FROM continents WHERE id=:id ');
+      $req->bindParam('id',$continen->getId());
       $nb=$req->execute();
       return $nb;
     }
