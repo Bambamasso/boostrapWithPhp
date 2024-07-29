@@ -1,7 +1,7 @@
 <?php
 class MonPdo{
     private Static $server='mysql:host=localhost';
-    private Static $dbname='dbname = nation';
+    private Static $dbname='dbname=nation';
     private Static $user='root';
     private Static $mdp='';
     private Static $monPdo;
@@ -17,15 +17,20 @@ class MonPdo{
 
 }
 
-public function __destruct(){
-  MonPdo::$unPdo=null;
+public function __destruct()
+{ 
+    MonPdo::$unPdo = null;
 }
-// Fontion static qui creer uniquement l'instance de la classe 
-//Appel: $instanceMonPdo=MonPdo:getMonPdo();
-//@return l'unique objet de la class MonPdo;
-public static function getInstance(){
-    if(self::$unPdo==null){
-        self::$monPdo=new MonPdo();
+/**
+*	Fonction statique qui cree l'unique instance de la classe
+* Appel : $instanceMonPdo = MonPdo::getMonPdo();
+*	@return l'unique objet de la classe MonPdo
+*/
+public static function getInstance()
+{
+    if(self::$unPdo == null)
+    {
+        self::$monPdo= new MonPdo();
     }
     return self::$unPdo;
 }

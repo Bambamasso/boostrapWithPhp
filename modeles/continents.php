@@ -1,7 +1,7 @@
 <?php
 class Continents{
-    private $id;
-    private $continent;
+    private  $id;
+    private  $continent;
 
     public function getId(){
         return $this->id;
@@ -13,30 +13,36 @@ class Continents{
 
     public function setId($id){
        $this->id=$id ;
+
     }
     public function setContinent( string $continent) : self{
       $this->continent=$continent;
+      return $this;
+
     }
 //return l'emsenble des continents 
 //@return continent[] tableau d'objet continent
 
-    public static function findAll():array{
-      $req=MonPdo::getInstance()->prepare('SELECT * FROM continents ');
-      $req->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'Continents');
-     
-    //  $req=MonPdo::getInstance()->Prepare('SELECT * FROM nationnalite INNER JOIN continents WHERE nationnalite.continent_id = continents.id');
-    //  $req->setFetchMode(PDO::FETCH_OBJ);
-    $req->execute();
-    $lesResultats=$req->fetchAll();
-    return $lesResultats;
-
-    }
+public static function findAll(): array {
+  try {
+      $req = MonPdo::getInstance()->prepare('SELECT * FROM continents');
+      $req->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Continents');
+      $req->execute();
+      $lesResultats = $req->fetchAll();
+      return $lesResultats;
+  } catch (PDOException $e) {
+      echo "Erreur lors de l'exécution de la requête : " . $e->getMessage() . "<br>";
+      echo "Code d'erreur SQLSTATE : " . $e->getCode() . "<br>";
+      echo "Informations d'erreur : " . print_r($e->errorInfo, true);
+      return []; // Retourner un tableau vide en cas d'erreur
+  }
+}
 
     //trouve un contient par son num
     //@param integer $id numéro add contient
     // @param contients objet contient trouvé
     
-    public static function findById(int $id):Contients{
+    public static function findById(int $id):Continents{
       $req=MonPdo::getInstance()->Prepare('SELECT * FROM continents WHERE id=:id');
       $req->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'Continents');
       $req->bindParam('id',$id);

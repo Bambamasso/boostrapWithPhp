@@ -21,7 +21,7 @@
             <?php foreach($lesContinents as $continent): ?>
               <tr class="d-flex">
                     <td class="col-md-2"><?php echo $continent->getId()?></td>
-                    <
+                    
                     <td class="col-md-4"><?php echo $continent->getContinent()?></td>
                     <td class="col-md-3">
                         <a href="formNationalite.php?action=Modifier&idModif=<?php echo $continent->getId();?>" class="btn btn-primary">Modifier</a>

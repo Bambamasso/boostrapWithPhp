@@ -2,8 +2,8 @@
 $action=$_GET['action'];
 switch($action){
     case 'list':
-        $lesContients=Continents::findAll();
-        include('vues/listeContients.php');
+        $lesContinents=Continents::findAll();
+        include('vues/ListeContinents.php');
         break;
 
     case 'add':
