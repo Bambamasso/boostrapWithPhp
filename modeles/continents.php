@@ -21,14 +21,15 @@ class Continents{
 //@return continent[] tableau d'objet continent
 
     public static function findAll():array{
-      $req=MonPdo::getInstance()->Prepare('SELECT * FROM continents ');
-      $req->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'Contients');
+      $req=MonPdo::getInstance()->prepare('SELECT * FROM continents ');
+      $req->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'Continents');
      
     //  $req=MonPdo::getInstance()->Prepare('SELECT * FROM nationnalite INNER JOIN continents WHERE nationnalite.continent_id = continents.id');
     //  $req->setFetchMode(PDO::FETCH_OBJ);
-     $req->execute();
-     $lesReultats=$req->fetchAll();
-     return $lesReultats;
+    $req->execute();
+    $lesResultats=$req->fetchAll();
+    return $lesResultats;
+
     }
 
     //trouve un contient par son num
@@ -37,7 +38,7 @@ class Continents{
     
     public static function findById(int $id):Contients{
       $req=MonPdo::getInstance()->Prepare('SELECT * FROM continents WHERE id=:id');
-      $req->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'Contients');
+      $req->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'Continents');
       $req->bindParam('id',$id);
       $req->execute();
       $lesReultats=$req->fetch();

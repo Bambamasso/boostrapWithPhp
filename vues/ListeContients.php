@@ -18,7 +18,7 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach($lesReultats as $continent): ?>
+            <?php foreach($lesContinents as $continent): ?>
               <tr class="d-flex">
                     <td class="col-md-2"><?php echo $continent->getId()?></td>
                     <

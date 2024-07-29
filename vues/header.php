@@ -54,7 +54,7 @@
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">gestion des contients</a>
         <div class="dropdown-menu">
-          <a class="dropdown-item" href="">Liste des continent</a>
+          <a class="dropdown-item" href="index.php?uc=continent&action=list">Liste des continent</a>
           <a class="dropdown-item" href="formNationalite.php?action=">Ajouter un continent</a>
          
         </div>

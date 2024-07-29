@@ -1,13 +1,19 @@
 
 <?php 
 session_start();
-require('vues/header.php');?>
+require('vues/header.php');
+require('modeles/continents.php');
+require('modeles/monPdo.php');
   
-<?php  $uc= empty ($_GET['uc'])? "Acceuil":$_GET['uc'] ;
+
+
+
+$uc= empty ($_GET['uc'])? "Acceuil":$_GET['uc'] ;
 switch($uc){
 case'Acceuil':include('vues/acceuil.php') ;
+
 break;
-case'Continents':  ;
+case'continent': include('controllers/continentsController.php') ;
 break;
 
 }

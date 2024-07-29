@@ -1,7 +1,7 @@
 <?php
 class MonPdo{
     private Static $server='mysql:host=localhost';
-    private Static $dbname='nation';
+    private Static $dbname='dbname = nation';
     private Static $user='root';
     private Static $mdp='';
     private Static $monPdo;
@@ -10,9 +10,10 @@ class MonPdo{
 // construction privé , creer l'instance de PDO qui sera sollicité 
 //pour toutes mes méthodes de la classe
 
- public function __construct(Type $var = null) {
+ private function __construct() {
   MonPdo::$unPdo=New PDO(MonPdo::$server.';'.MonPdo::$dbname,MonPdo::$user,MonPdo::$mdp);
-  MonPdo::$unPdo>setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
+  MonPdo::$unPdo->query("SET CHARACTER SET utf8");
+  MonPdo::$unPdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 }
 
