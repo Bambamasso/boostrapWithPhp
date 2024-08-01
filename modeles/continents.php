@@ -69,7 +69,7 @@ public static function findAll(): array {
   }
 
     //permet de modifier un continent
-    public static function update(Continents $continen):int{
+    public static function update(Continents $continent):int{
       $req=MonPdo::getInstance()->Prepare('UPDATE continents SET libelle =:libelle WHERE id=:id ');
        $id=$continen->getId();        
        $libelle=$continen->getContinent();
@@ -79,7 +79,7 @@ public static function findAll(): array {
       return $nb;
     }
 //permet de suprimer un continent
-    public static function delete(Continents $continen):int{
+    public static function delete(Continents $continent):int{
       $req=MonPdo::getInstance()->Prepare('DELETE FROM continents WHERE id=:id ');
       $id=$continen->getId();        
       $req->bindParam('id',$id);

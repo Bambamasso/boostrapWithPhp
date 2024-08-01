@@ -13,10 +13,22 @@ switch($action){
 
     case 'update':
         $mode='Modifier';
+        $continent=Continents::findById($_GET['id']);
         include('vues/formContinents.php');
         break;
 
     case 'delete':
+        $mode='Delete';
+        $continent=Continents::findById($_GET['id']);
+        $nb=Continents::delete($continent);
+        $message='supprimé';
+        if($nb==1){
+            $session['message']=['success'=>'Le continent a bien été supprimer $message'];
+          }else{
+              $session['message']=['danger'=>'Le continent a bien été supprimer $message'];
+          }
+      
+          header('Location :index.php?uc=continent&action=list');
         break;
     case 'validForm':
         $continent=new Continents();
@@ -27,9 +39,9 @@ switch($action){
           $message='Ajouter';
         }else{//cas d'une modification
             $continent->setId($_POST['id']);
-            $continent->setlibelle($_POST['libelle']);
+            $continent->setLibelle($_POST['libelle']);
             $nb=Continents::update($continent) ;
-          $message='Modifier';
+          $message='Modifié';
         }
         if($nb==1){
           $session['message']=['success'=>'Le continent a bien été ajouté $message'];
@@ -37,7 +49,7 @@ switch($action){
             $session['message']=['danger'=>'Le continent a bien été ajouté $message'];
         }
     
-        header('LOCATION :index.php?uc=continent&action=list');
+        header('Location :index.php?uc=continent&action=list');
         
         break;
         

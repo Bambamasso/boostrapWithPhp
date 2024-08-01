@@ -15,7 +15,7 @@ class Nationalite{
 
     public function getContinent_id():Continents{
 
-      return Continents::findById($yhis->continent_id);
+      return Continents::findById($this->continent_id);
      }
      
 
@@ -48,7 +48,7 @@ class Nationalite{
     public static function findById(int $id_nationalite):Nationalite{
       $req=MonPdo::getInstance()->Prepare('SELECT * FROM nationnalite WHERE id_nationalite=:id_nationalite');
       $req->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'Nationnalite');
-      $req->bindParam('id_nationalite',$id);
+      $req->bindParam('id_nationalite',$id_nationalite);
       $req->execute();
       $lesReultats=$req->fetch();
       return $lesReultats;

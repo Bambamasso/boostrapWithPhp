@@ -18,14 +18,14 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach($lesContinents as $continent): ?>
+            <?php foreach($lesContinents as $values): ?>
               <tr class="d-flex">
-                    <td class="col-md-2"><?php echo $continent->getId()?></td>
+                    <td class="col-md-2"><?php echo $values->getId()?></td>
                     
-                    <td class="col-md-4"><?php echo $continent->getLibelle()?></td>
+                    <td class="col-md-4"><?php echo $values->getLibelle()?></td>
                     <td class="col-md-3">
-                        <a href="index.php?uc=continent&action=update&id=<?php echo $continent->getId();?>" class="btn btn-primary">Modifier</a>
-                        <a href="#modalSppression" data-suppression="index.php?uc=continent&action=Modifier&id=<?php echo $continent->getId();?> " data-toggle="modal" class="btn btn-danger">Suprimer</a>
+                        <a href="index.php?uc=continent&action=update&id=<?php echo $values->getId();?>" class="btn btn-primary">Modifier</a>
+                        <a href="index.php?uc=continent&action=Modifier&id=<?php echo $values->getId();?>" data-suppression=" " data-toggle="modal" class="btn btn-danger">Suprimer</a>
                     </td>
                     <!-- supNationalite.php?idSup=<?php echo $value['id'];?> -->
                 </tr>
