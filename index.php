@@ -1,9 +1,12 @@
 
 <?php 
+ob_start();
 session_start();
-require('vues/header.php');
-require('modeles/continents.php');
-require('modeles/monPdo.php');
+include('vues/header.php');
+include('modeles/continents.php');
+include('modeles/monPdo.php');
+include('vues/messageFlash.php');
+
  
 $uc= empty ($_GET['uc'])? "Acceuil":$_GET['uc'] ;
 switch($uc){

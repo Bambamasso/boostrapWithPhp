@@ -12,9 +12,12 @@
    
    $("a[data-suppression]").click(function() {
          var lien = $(this).attr('data-suppression');
-         $('#btnSuppr').attr('href', lien);
+         var message=$(this).attr('data-message');
+         $('#btnSuppr').attr('href',lien);
+         $(".modal-body").text(message);
       });
 </script>
 
     </body>
 </html>
+<?php ?>

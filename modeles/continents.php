@@ -56,23 +56,19 @@ public static function findAll(): array {
     //@param Continent $continent à ajouter;
     //@return integer  resultat (1 si l'opération à réussi, 0 sinon)
     public static function add(Continents $continent): int {
-      try {
+     
           $req = MonPdo::getInstance()->prepare('INSERT INTO continents(libelle) VALUES (:libelle)');
           $libelle = $continent->getLibelle();
           $req->bindParam(':libelle', $libelle);
           $nb = $req->execute();
-          return $nb ? $req->rowCount() : 0;
-      } catch (PDOException $e) {
-          echo "Erreur lors de l'ajout du continent : " . $e->getMessage();
-          return 0;
-      }
-  }
-
+          return $nb ;
+  
+    }
     //permet de modifier un continent
     public static function update(Continents $continent):int{
       $req=MonPdo::getInstance()->Prepare('UPDATE continents SET libelle =:libelle WHERE id=:id ');
        $id=$continen->getId();        
-       $libelle=$continen->getContinent();
+       $libelle=$continen->getLibelle();
       $req->bindParam(':id',$id);
       $req->bindParam(':libelle',$libelle);
       $nb=$req->execute();

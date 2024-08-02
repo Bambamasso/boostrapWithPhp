@@ -25,7 +25,7 @@
                     <td class="col-md-4"><?php echo $values->getLibelle()?></td>
                     <td class="col-md-3">
                         <a href="index.php?uc=continent&action=update&id=<?php echo $values->getId();?>" class="btn btn-primary">Modifier</a>
-                        <a href="index.php?uc=continent&action=Modifier&id=<?php echo $values->getId();?>" data-suppression=" " data-toggle="modal" class="btn btn-danger">Suprimer</a>
+                        <a href="#modalSuppression" data-toggle="modal" data-message="Voulez vous supprimer ce continent ?" data-suppression="index.php?uc=continent&action=delete&id=<?php echo $values->getId();?> "  class="btn btn-danger">Suprimer</a>
                     </td>
                     <!-- supNationalite.php?idSup=<?php echo $value['id'];?> -->
                 </tr>

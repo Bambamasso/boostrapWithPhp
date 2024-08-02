@@ -18,7 +18,7 @@ switch($action){
         break;
 
     case 'delete':
-        $mode='Delete';
+        // $mode='Delete';
         $continent=Continents::findById($_GET['id']);
         $nb=Continents::delete($continent);
         $message='supprimé';
@@ -34,7 +34,7 @@ switch($action){
         $continent=new Continents();
         if(empty($_POST['id'])){//cas d'un ajout 
            
-          $continent->setLibelle($_POST['libelle']) ;
+          $continent->setLibelle($_POST['libelle']);
           $nb=Continents::add($continent) ;
           $message='Ajouter';
         }else{//cas d'une modification
